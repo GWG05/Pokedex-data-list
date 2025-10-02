@@ -5,4 +5,7 @@ let pokemonList = [
   { name: 'Fennekin', height: 0.4, types: ['fire'] },
   { name: 'Braixen', height: 1, types: ['fire'] },
   { name: 'Delphox', height: 1.5, types: ['fire', 'psychic'] },
+  { name: 'Froakie', height: 0.3, types: ['water'] },
+  { name: 'Frogadier', height: 0.6, types: ['water'] },
+  { name: 'Greninja', height: 1.5, types: ['water', 'dark'] }
 ];
