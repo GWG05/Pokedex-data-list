@@ -19,6 +19,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 
   // if / then statement (if the height exceeds 1.5 then say 'wow, thats big' in the console.)
   if (pokemonList[i].height > 1.5) {
-    console.log('Wow, that’s big!')
+    console.log('Wow, that\’s big!')
+    { document.write(" - Wow, that\’s big!"); } document.write("<br>");
   };
 }
