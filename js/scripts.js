@@ -1,4 +1,5 @@
-let pokemonList = [
+let pokemonRepository = (function () {
+  let pokemonList = [
   { name: 'Chespin', height: 0.4, types: ['grass'] },
   { name: 'Quilladin', height: 0.7, types: ['grass'] },
   { name: 'Chesnaught', height: 1.6, types: ['grass', 'fighting'] },
@@ -8,15 +9,15 @@ let pokemonList = [
   { name: 'Froakie', height: 0.3, types: ['water'] },
   { name: 'Frogadier', height: 0.6, types: ['water'] },
   { name: 'Greninja', height: 1.5, types: ['water', 'dark'] }
-];
+  ];
 
-// the pokemonList for loop. (makes a list of the items it the array)
-// for (let i = 0; i < pokemonList.length; i++) {
-//   // makes the height values appear in the console.
-//   console.log(pokemonList[i].height);
-//   // makes the names and heights of the pokemon appear in the body.html
-//   document.write(pokemonList[i].name + ' (height:' + pokemonList[i].height + ') ');
-// }
+  // the pokemonList for loop. (makes a list of the items it the array)
+  // for (let i = 0; i < pokemonList.length; i++) {
+  //   // makes the height values appear in the console.
+  //   console.log(pokemonList[i].height);
+  //   // makes the names and heights of the pokemon appear in the body.html
+  //   document.write(pokemonList[i].name + ' (height:' + pokemonList[i].height + ') ');
+  // }
 
   pokemonList.forEach(function(pokemon) {
   console.log(pokemon.name + ' (height:' + pokemon.height + ') '),
@@ -26,4 +27,18 @@ let pokemonList = [
     console.log('Wow, that\’s big!')
     { document.write(" - Wow, that\’s big!"); } document.write("<br>");
   };
-});
+  });
+
+function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
