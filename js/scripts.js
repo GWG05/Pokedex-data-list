@@ -11,15 +11,21 @@ let pokemonList = [
 ];
 
 // the pokemonList for loop. (makes a list of the items it the array)
-for (let i = 0; i < pokemonList.length; i++) {
-  // makes the height values appear in the console.
-  console.log(pokemonList[i].height);
-  // makes the names and heights of the pokemon appear in the body.html
-  document.write(pokemonList[i].name + ' (height:' + pokemonList[i].height + ') ');
+// for (let i = 0; i < pokemonList.length; i++) {
+//   // makes the height values appear in the console.
+//   console.log(pokemonList[i].height);
+//   // makes the names and heights of the pokemon appear in the body.html
+//   document.write(pokemonList[i].name + ' (height:' + pokemonList[i].height + ') ');
 
+  pokemonList.forEach(function(pokemon) {
+  console.log(pokemon.name + ' (height:' + pokemon.height + ') '),
+  document.write(pokemon.name + ' (height:' + pokemon.height + ') ')
   // if / then statement (if the height exceeds 1.5 then say 'wow, thats big' in the console.)
-  if (pokemonList[i].height > 1.5) {
+  if (pokemon.height > 1.5) {
     console.log('Wow, that\’s big!')
     { document.write(" - Wow, that\’s big!"); } document.write("<br>");
   };
-}
+  });
+
+  
+// }
