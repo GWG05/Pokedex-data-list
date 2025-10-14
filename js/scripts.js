@@ -16,6 +16,7 @@ let pokemonList = [
 //   console.log(pokemonList[i].height);
 //   // makes the names and heights of the pokemon appear in the body.html
 //   document.write(pokemonList[i].name + ' (height:' + pokemonList[i].height + ') ');
+// }
 
   pokemonList.forEach(function(pokemon) {
   console.log(pokemon.name + ' (height:' + pokemon.height + ') '),
@@ -25,7 +26,4 @@ let pokemonList = [
     console.log('Wow, that\’s big!')
     { document.write(" - Wow, that\’s big!"); } document.write("<br>");
   };
-  });
-
-  
-// }
+});
