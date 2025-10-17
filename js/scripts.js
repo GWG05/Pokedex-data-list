@@ -27,8 +27,8 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name
     button.classList.add("button-class")
     // Calls event listener
-    button.addEventListener('click', function (showDetails) {
-      console.log(pokemon.name);
+    button.addEventListener('click', function() {
+      showDetails(pokemon);
     });
     listpokemon.appendChild(button)
     pokemonList.appendChild(listpokemon)
@@ -36,6 +36,9 @@ let pokemonRepository = (function () {
 
   // Event Listener.
   // listens to user interactions
+  const type = 'click'
+  const listener = function() {};
+  addEventListener(type, listener)
   function showDetails(pokemon){
     console.log(pokemon.name)
   }
