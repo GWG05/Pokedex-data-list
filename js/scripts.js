@@ -55,22 +55,22 @@ let pokemonRepository = (function () {
   }
 
   function loadDetails(pokemon) {
-    let url = item.detailsUrl;
+    let url = pokemon.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
       // Now we add the details to the item
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
+      pokemon.imageUrl = details.sprites.front_default;
+      pokemon.height = details.height;
+      pokemon.types = details.types;
     }).catch(function(e) {
       console.error(e);
     });
   }
 
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+  function showDetails(pokemon) {
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      console.log(pokemon);
     });
   }
 
@@ -92,6 +92,6 @@ pokemonRepository.loadList().then(function() {
 });
 
 // Runs <ul> on body.
-// pokemonRepository.getAll().forEach(function (pokemon) {
-//   pokemonRepository.addListItem(pokemon)
-// });
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon)
+});
