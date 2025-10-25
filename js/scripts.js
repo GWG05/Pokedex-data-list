@@ -22,7 +22,7 @@ let pokemonRepository = (function () {
     let listpokemon = document.createElement('li');
     let button = document.createElement('button')
     button.innerText = pokemon.name
-    button.classList.add("button-class")
+    button.classList.add("dex-info")
     // Calls event listener
     button.addEventListener('click', function() {
       showDetails(pokemon);
@@ -34,9 +34,6 @@ let pokemonRepository = (function () {
   // Event Listener.
   // listens to user interactions
 
-  function showDetails(pokemon){
-    console.log(pokemon.name)
-  }
 
   function loadList() {
     return fetch(apiUrl).then(function (response) {
@@ -70,9 +67,66 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+     
     });
   }
+
+  function showModal(title, text) {
+    let modalContainer = document.querySelector('#modal-container');
+
+    // clear all existing modal content
+    modalContainer.innerHTML = '';
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Add new modal content
+    let closeButtonElement = document.createElement('button');
+    // lets the close button close the modal.
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+
+    // lets the user close the modal by clicking on the background
+    modalContainer.addEventListener('click', (e) => {
+      // Since this is also triggered when clicking INSIDE the modal
+      // We only want to close if the user clicks directly on the overlay
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+  }
+
+  // links pokemon buttons to modal.
+  document.querySelector('.pokemon-list').addEventListener('click', () => {
+    // gives info inside modal.
+    showModal('Dex entry', 'This is the modal content!');
+  });
+
+  function hideModal() {
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.classList.remove('is-visible')
+  }
+  // lets the user close the model with the escape key.
+  window.addEventListener('keydown', (e) => {
+    let modalContainer = document.querySelector('#modal-container');
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
 
   return {
     add: add,
