@@ -67,11 +67,11 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
-     
+     showModal(pokemon);
     });
   }
 
-  function showModal(title, text) {
+  function showModal(pokemon) {
     let modalContainer = document.querySelector('#modal-container');
 
     // clear all existing modal content
@@ -87,14 +87,29 @@ let pokemonRepository = (function () {
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
+    titleElement.innerText = 'Dex Entry';
 
-    let contentElement = document.createElement('p');
-    contentElement.innerText = text;
+    let nameElement = document.createElement('p');
+    nameElement.innerText = pokemon.name;
+
+    let imageElement = document.createElement('img');
+    imageElement.src = pokemon.imageUrl;
+
+    let heightElement = document.createElement('p');
+    heightElement.innerText = `Height: ${pokemon.height}`;
+
+    let typesElement = document.createElement('p');
+    typesElement.innerText =`Types: ${pokemon.types
+      .map(({ type }) => type.name)
+      .join(", ")}`;
+  
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(nameElement);
+    modal.appendChild(imageElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(typesElement);
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
@@ -110,11 +125,7 @@ let pokemonRepository = (function () {
     });
   }
 
-  // links pokemon buttons to modal.
-  document.querySelector('.pokemon-list').addEventListener('click', () => {
-    // gives info inside modal.
-    showModal('Dex entry', 'This is the modal content!');
-  });
+
 
   function hideModal() {
     let modalContainer = document.querySelector('#modal-container');
@@ -143,9 +154,4 @@ pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
-});
-
-// Runs <ul> on body.
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon)
 });
