@@ -26,6 +26,8 @@ let pokemonRepository = (function () {
     button.classList.add('dex-info')
     button.classList.add("btn")
     button.classList.add('btn-info')
+    button.setAttribute('data-toggle', 'modal')
+    button.setAttribute('data-target', '#modal-container')
     // Calls event listener
     button.addEventListener('click', function() {
       showDetails(pokemon);
